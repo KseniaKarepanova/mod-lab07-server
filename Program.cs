@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Diagnostics;
+using System.Threading;
 namespace Lab07
 {
     class Program
@@ -27,6 +28,8 @@ namespace Lab07
             for (int i = 0; i < count; i++)
             {
                 client.Run(i);
+                Thread.Sleep(TimeSpan.FromSeconds(1 / application_intensity));
+
             }
             while (true)
             {

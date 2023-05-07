@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Diagnostics;
 namespace Lab07
 {
     class Program
@@ -20,6 +21,8 @@ namespace Lab07
             double r_real;
             Server server = new Server(pool_count, service_intensity);
             Client client = new Client(server);
+            var sw = new Stopwatch();
+            sw.Start();
             int count = 15;
             for (int i = 0; i < count; i++)
             {
@@ -30,6 +33,8 @@ namespace Lab07
                 if (server.NotWork())
                     break;
             }
+            sw.Stop();
+            T = (double)sw.ElapsedMilliseconds / 1000;
 
             r = calculate_r(application_intensity, service_intensity);
             P0 = calculate_P0(pool_count, r);
